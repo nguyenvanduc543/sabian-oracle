@@ -18,7 +18,7 @@ package.domain = org.test
 source.dir = .
 
 # (list) Source files to include (leave empty to include all the files)
-source.include_exts = py,txt 
+source.include_exts = py,kv,txt 
 
 # (list) List of inclusions using pattern matching
 source.include_patterns = *.txt
