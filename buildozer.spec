@@ -48,7 +48,7 @@ requirements = python3,kivy==2.0.0,kivymd,materialyoucolor,exceptiongroup,asyncg
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 android.manifest_hooks = data/manifest.xml
- (str) Presplash of the application
+# (str) Presplash of the application
 # presplash.filename = %(source.dir)s/sabianoracle.png
 
 # (str) Icon of the application
@@ -335,7 +335,7 @@ android.allow_backup = True
 #p4a.fork = kivy
 
 # (str) python-for-android branch to use, defaults to master
-#p4a.branch = master
+p4a.branch = develop
 
 # (str) python-for-android specific commit to use, defaults to HEAD, must be within p4a.branch
 #p4a.commit = HEAD
