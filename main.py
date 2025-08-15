@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
 import random
 import re
-import tkinter as tk
-from tkinter import scrolledtext
+import os
+
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.textinput import TextInput
+
 
 def get_sabian_symbol(dice1, dice2):
     try:
-        with open("1158872025.txt", "r", encoding="utf-8") as file:
+        # Lấy đường dẫn file kèm theo APK
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_path, "1158872025.txt")
+
+        with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
 
         symbol_key = f"{dice1}-{dice2}"
@@ -26,25 +37,47 @@ def get_sabian_symbol(dice1, dice2):
     except Exception as e:
         return f"⚠️ Lỗi: {str(e)}"
 
-def roll_dice():
-    dice1 = random.randint(1, 12)
-    dice2 = random.randint(1, 30)
-    result_text = f"🎲 Kết quả xúc xắc: {dice1}-{dice2}\n🔮 Dự đoán Sabian:\n\n"
-    result_text += get_sabian_symbol(dice1, dice2)
-    output_box.delete(1.0, tk.END)
-    output_box.insert(tk.END, result_text)
 
-# Tạo cửa sổ chính
-root = tk.Tk()
-root.title("Sabian Oracle 🎲🔮")
-root.geometry("600x500")
+class SabianLayout(BoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(orientation="vertical", **kwargs)
 
-# Nút bấm xúc xắc
-roll_button = tk.Button(root, text="🎲 Lắc xúc xắc", font=("Arial", 14), command=roll_dice)
-roll_button.pack(pady=10)
+        # Nút lắc xúc xắc
+        self.roll_button = Button(
+            text="🎲 Lắc xúc xắc",
+            font_size=22,
+            size_hint=(1, None),
+            height=60
+        )
+        self.roll_button.bind(on_release=self.roll_dice)
+        self.add_widget(self.roll_button)
 
-# Khung hiển thị kết quả
-output_box = scrolledtext.ScrolledText(root, wrap=tk.WORD, font=("Arial", 12))
-output_box.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        # Khung scroll hiển thị kết quả
+        self.scroll = ScrollView(size_hint=(1, 1))
+        self.output_box = TextInput(
+            text="🔮 Chào mừng đến với Sabian Oracle!",
+            readonly=True,
+            font_size=16,
+            size_hint_y=None,
+            height=800,
+        )
+        self.output_box.bind(minimum_height=self.output_box.setter('height'))
+        self.scroll.add_widget(self.output_box)
+        self.add_widget(self.scroll)
 
-root.mainloop()
+    def roll_dice(self, instance):
+        dice1 = random.randint(1, 12)
+        dice2 = random.randint(1, 30)
+        result_text = f"🎲 Kết quả xúc xắc: {dice1}-{dice2}\n\n🔮 Dự đoán Sabian:\n\n"
+        result_text += get_sabian_symbol(dice1, dice2)
+        self.output_box.text = result_text
+
+
+class SabianOracleApp(App):
+    def build(self):
+        self.title = "Sabian Oracle 🎲🔮"
+        return SabianLayout()
+
+
+if __name__ == "__main__":
+    SabianOracleApp().run()
