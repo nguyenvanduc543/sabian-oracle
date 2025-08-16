@@ -37,12 +37,8 @@ class SabianLayout(BoxLayout):
     def roll_dice(self):
         dice1 = random.randint(1, 12)
         dice2 = random.randint(1, 30)
-
-        result_text = (
-            f"[size=28]🎲 Kết quả xúc xắc: {dice1}-{dice2}[/size]\n\n"
-            f"[size=24]🔮 Dự đoán Sabian:[/size]\n\n"
-            f"{get_sabian_symbol(dice1, dice2)}"
-        )
+        result_text = f"🎲 Kết quả xúc xắc: {dice1}-{dice2}\n\n🔮 Dự đoán Sabian:\n\n"
+        result_text += get_sabian_symbol(dice1, dice2)
         self.ids.output_box.text = result_text
 
 
