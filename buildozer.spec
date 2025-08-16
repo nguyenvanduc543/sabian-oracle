@@ -18,10 +18,10 @@ package.domain = org.test
 source.dir = .
 
 # (list) Source files to include (leave empty to include all the files)
-source.include_exts = py,kv,txt 
+source.include_exts = py,kv,txt,ttf 
 
 # (list) List of inclusions using pattern matching
-source.include_patterns = *.txt
+source.include_patterns = *.txt,*.kv,*.ttf
 
 # (list) Source files to exclude (leave empty to not exclude anything)
 #source.exclude_exts = spec
