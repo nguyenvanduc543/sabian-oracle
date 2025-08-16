@@ -48,10 +48,10 @@ requirements = python3,kivy==2.2.1,kivymd,exceptiongroup,android,pillow
 # requirements.source.kivy = ../../kivy
 android.manifest_hooks = data/manifest.xml
 # (str) Presplash of the application
- presplash.filename = %(source.dir)s/mai3558162025.png
+presplash.filename = %(source.dir)s/mai3558162025.png
 
 # (str) Icon of the application
- icon.filename = %(source.dir)s/mai3558162025.png
+icon.filename = %(source.dir)s/mai3558162025.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
