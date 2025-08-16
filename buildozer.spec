@@ -18,10 +18,9 @@ package.domain = org.test
 source.dir = .
 
 # (list) Source files to include (leave empty to include all the files)
-source.include_exts = py,kv,txt,png 
-
+source.include_exts = py,kv,txt
 # (list) List of inclusions using pattern matching
-source.include_patterns = *.txt,*.kv,*.png
+source.include_patterns = *.txt
 
 # (list) Source files to exclude (leave empty to not exclude anything)
 #source.exclude_exts = spec
@@ -42,16 +41,16 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.2.1,kivymd,android,pillow
+requirements = python3,kivy==2.2.1,kivymd,exceptiongroup,android
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 android.manifest_hooks = data/manifest.xml
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/mai3558162025.png
+#presplash.filename = %(source.dir)s/mai3558162025.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/mai3558162025.png
+#icon.filename = %(source.dir)s/mai3558162025.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
