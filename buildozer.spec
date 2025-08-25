@@ -6,21 +6,21 @@
 [app]
 
 # (str) Title of your application
-title =sabianoracle
+title = Sabian Oracle
 
 # (str) Package name
 package.name = sabianoracle
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+package.domain = org.sabianoracle
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (leave empty to include all the files)
-source.include_exts = py,kv,txt
+source.include_exts = py,kv,txt,mp3
 # (list) List of inclusions using pattern matching
-source.include_patterns = *.txt
+source.include_patterns = assets/*.mp3, *.txt
 
 # (list) Source files to exclude (leave empty to not exclude anything)
 #source.exclude_exts = spec
