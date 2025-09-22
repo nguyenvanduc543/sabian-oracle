@@ -1,35 +1,18 @@
 name: Build
-
 on: [push, pull_request]
 
 jobs:
   build-android:
     name: Build for Android
     runs-on: ubuntu-latest
-    timeout-minutes: 120
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build with Buildozer (override entrypoint to avoid chown)
+      - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
         with:
+          buildozer-version: latest
           workdir: .
-          buildozer_version: stable
-          # Ghi đè entrypoint + args để trực tiếp chạy lệnh buildozer,
-          # tránh entrypoint mặc định (vốn thực hiện chown và gây lỗi).
-          entryPoint: /bin/sh
-          args: -lc "buildozer -v android debug"
-        env:
-          PIP_BREAK_SYSTEM_PACKAGES: "1"
-
-      - name: Upload APK / AAB artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: SabianOracle
-          # upload tất cả .apk/.aab tìm thấy trong workspace (glob)
-          path: |
-            **/*.apk
-            **/*.aab
+          command: buildozer -v android debug
