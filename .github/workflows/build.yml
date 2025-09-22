@@ -1,4 +1,5 @@
 name: Build
+
 on: [push, pull_request]
 
 jobs:
@@ -16,6 +17,8 @@ jobs:
         with:
           workdir: .
           buildozer_version: stable
+          # sửa ở đây: chown_user đổi thành runner để tránh lỗi "invalid user: 'user'"
+          chown_user: runner
         env:
           PIP_BREAK_SYSTEM_PACKAGES: "1"
 
